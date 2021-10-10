@@ -17,5 +17,18 @@ const GlobalStyle = createGlobalStyle`
         --layout-max-width: 1110px;
         --fw-reg: 400;
         --fw-bold: 700;
+
+        --dark: #1D2026;
+        --gray: #69707D;
+        --white: #FFFFFF;
+        --orange: #FF7E1B;
+
+        color: var(--dark);
+    }
+
+    p{
+        color: var(--gray);
     }
 `
+
+export default GlobalStyle;
