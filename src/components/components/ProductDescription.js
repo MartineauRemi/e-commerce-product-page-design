@@ -1,8 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import ProductPrice from './ProductPrice'
+import QuantityPicker from './QuantityPicker'
 
 const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     @media screen and (max-width: 767px){
         padding: 0 1.5rem;
     }
@@ -48,7 +52,11 @@ export default function ProductDescription({data}) {
             <Description>{data.description}</Description>
             <PriceSection
                 price={data.price}
-                reductionPercentage={data.reductionPercentage}
+                discount={data.discount}
+            />
+            <QuantityPicker
+                name={data.name}
+                price={data.price}
             />
         </Wrapper>
     )

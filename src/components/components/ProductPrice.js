@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { getPriceAfterDiscount } from '../../helpers/PriceHelper'
 
 const Wrapper = styled.section`
     display: flex;
@@ -38,21 +39,16 @@ const Price = styled.div`
     color: var(--gray);
 `
 
-export default function ProductPrice({price, reductionPercentage}) {
-    function priceFormat(price){
-        return `$${price}`
-    }
-
-    const priceAfterReduction = price * (reductionPercentage * 0.01)
-
-
+export default function ProductPrice({price, discount}) {
+    const priceAfterDiscount= getPriceAfterDiscount(price, discount)
+    
     return (
         <Wrapper>
             <Container>
-                <PriceAfterReduction>{priceFormat(priceAfterReduction)}</PriceAfterReduction>
-                <Reduction>{`${reductionPercentage}%`}</Reduction>
+                <PriceAfterReduction>{`$${priceAfterDiscount}`}</PriceAfterReduction>
+                <Reduction>{`${discount}%`}</Reduction>
             </Container>
-            <Price>{priceFormat(price)}</Price>
+            <Price>{`$${price}`}</Price>
         </Wrapper>            
     )
 }
