@@ -16,6 +16,7 @@ const Wrapper = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--white);
 `
 
 const Content = styled.div`
