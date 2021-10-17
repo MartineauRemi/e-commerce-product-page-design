@@ -5,6 +5,8 @@ import Logo from '../components/Logo'
 import MenuButton from '../components/MenuButton'
 import ProfileButton from '../components/ProfileButton'
 import Menu from './Menu'
+import ShoppingCart from './ShoppingCart'
+
 
 const Wrapper = styled.header`
     width: 100%;
@@ -26,6 +28,7 @@ const Content = styled.div`
     justify-content: space-between;
     width: 100%;
     max-width: var(--layout-max-width);
+    position: relative;
 
     .profile-button, .cart-button, .menu-button, .logo, .menu{
         align-self: center;
@@ -42,7 +45,7 @@ const Section = styled.section`
     }
 `
 
-export default function Header({menuActive, setMenuActive, cartActive, setCartActive}) {
+export default function Header({menuActive, setMenuActive, shoppingCartActive, setShoppingCartActive, shoppingCartItems, setShoppingCartItems}) {
     return (
         <Wrapper>
             <Content>
@@ -58,11 +61,17 @@ export default function Header({menuActive, setMenuActive, cartActive, setCartAc
                 </Section>
                 <Section>
                     <CartButton
-                        cartActive={cartActive}
-                        setCartActive={setCartActive}
+                        shoppingCartActive={shoppingCartActive}
+                        setShoppingCartActive={setShoppingCartActive}
                     />
                     <ProfileButton />
                 </Section>
+
+                <ShoppingCart
+                    shoppingCartActive={shoppingCartActive}
+                    shoppingCartItems={shoppingCartItems}
+                    setShoppingCartItems={setShoppingCartItems}
+                />
             </Content>
         </Wrapper>
     )

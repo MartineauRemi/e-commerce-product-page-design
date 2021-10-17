@@ -72,24 +72,36 @@ const StyledOrangeButton = styled(OrangeButton)`
     }
 `
 
-export default function QuantityPicker({name, price}) {
-    const [qty, setQty] = useState(0)
+export default function QuantityPicker({data, shoppingCartItems, setShoppingCartItems}) {
+    const [quantity, setQuantity] = useState(0)
     function onClickSubtractButton(e){
         e.preventDefault()
-        setQty((prevQty) => prevQty === 0 ? 0 : prevQty - 1)
+        setQuantity((prevQty) => prevQty === 0 ? 0 : prevQty - 1)
     }
     function onClickAddButton(e){
         e.preventDefault()
-        setQty((prevQty) => prevQty === 100 ? 100 : prevQty + 1)
+        setQuantity((prevQty) => prevQty === 100 ? 100 : prevQty + 1)
     }
 
     function onSubmit(e){
         e.preventDefault()
-        console.log({
-            name: name,
-            price: price,
-            qty: qty
-        })
+        const sameProductInCart = shoppingCartItems.find(item => item.product.id === data.id)
+        if(sameProductInCart){
+            const cartWithoutSelectedProduct = shoppingCartItems.filter(item => item !== sameProductInCart)
+            setShoppingCartItems([
+                ...cartWithoutSelectedProduct, {
+                    product: data,
+                    quantity: quantity + sameProductInCart.quantity
+                }
+            ])
+        }else{
+            setShoppingCartItems([...shoppingCartItems, {
+                product: data,
+                quantity: quantity
+                }
+            ])
+        }
+        setQuantity(0)
     }
 
     return (
@@ -98,7 +110,7 @@ export default function QuantityPicker({name, price}) {
                 <Button onClick={onClickSubtractButton}>-</Button>
                 <Input
                     type='number'
-                    value={qty}
+                    value={quantity}
                     disabled
                 />
                 <Button onClick={onClickAddButton}>+</Button>

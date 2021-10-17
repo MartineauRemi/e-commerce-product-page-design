@@ -37,12 +37,18 @@ const Description = styled.p`
     margin-bottom: 1.5rem;
 `
 
-const PriceSection = styled(ProductPrice)`
-    margin-bottom: 2rem;
+const Container = styled.div`
+    display: grid;
+    row-gap: 1rem;
+
+    @media screen and (min-width: 1024px){
+        row-gap: 2rem;
+    }
 `
 
 
-export default function ProductDescription({data}) {
+
+export default function ProductDescription({data, shoppingCartItems, setShoppingCartItems}) {
     
 
     return (
@@ -50,14 +56,17 @@ export default function ProductDescription({data}) {
             <Brand>{data.brand}</Brand>
             <Name>{data.name}</Name>
             <Description>{data.description}</Description>
-            <PriceSection
-                price={data.price}
-                discount={data.discount}
-            />
-            <QuantityPicker
-                name={data.name}
-                price={data.price}
-            />
+            <Container>
+                <ProductPrice
+                    price={data.price}
+                    discount={data.discount}
+                />
+                <QuantityPicker
+                    data={data}
+                    shoppingCartItems={shoppingCartItems}
+                    setShoppingCartItems={setShoppingCartItems}
+                />
+            </Container>
         </Wrapper>
     )
 }

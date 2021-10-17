@@ -24,7 +24,10 @@ const Main = styled.main`
 
 function App() {
   const [menuActive, setMenuActive] = useState(false)
-  const [cartActive, setCartActive] = useState(false)
+  const [shoppingCartActive, setShoppingCartActive] = useState(false)
+  const [shoppingCartItems, setShoppingCartItems] = useState([])
+
+  console.log(shoppingCartItems)
 
   return (
     <AppContainer className="App">
@@ -32,14 +35,18 @@ function App() {
       <Header
         menuActive={menuActive}
         setMenuActive={setMenuActive}
-        cartActive={cartActive}
-        setCartActive={setCartActive}
+        shoppingCartActive={shoppingCartActive}
+        setShoppingCartActive={setShoppingCartActive}
+        shoppingCartItems={shoppingCartItems}
+        setShoppingCartItems={setShoppingCartItems}
       />
       <Main>
         {data.map(product => (
             <Product
               key={product.id}
               data={product}
+              shoppingCartItems={shoppingCartItems}
+              setShoppingCartItems={setShoppingCartItems}
             />
           )
         )}

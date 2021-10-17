@@ -14,9 +14,9 @@ const Button = styled.button`
     height: 1.5rem;
 `
 
-export default function CartButton({cartActive, setCartActive}) {
+export default function CartButton({shoppingCartActive, setShoppingCartActive}) {
     function onClickCartButton(){
-        setCartActive(!cartActive)
+        setShoppingCartActive(!shoppingCartActive)
     }
 
     return (

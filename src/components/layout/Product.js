@@ -20,7 +20,7 @@ const Wrapper = styled.section`
     }
 `
 
-export default function Product({data}) {
+export default function Product({data, shoppingCartItems, setShoppingCartItems}) {
     return (
         <Wrapper>
             <ProductImages
@@ -28,6 +28,8 @@ export default function Product({data}) {
             />
             <ProductDescription
                 data={data}
+                shoppingCartItems={shoppingCartItems}
+                setShoppingCartItems={setShoppingCartItems}
             />
         </Wrapper>
     )
